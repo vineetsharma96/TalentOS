@@ -1,3 +1,6 @@
+import "next-auth";
+import "next-auth/jwt";
+
 export type UserRole = "ADMIN" | "HR_MANAGER" | "EMPLOYEE";
 
 export interface SessionUser {
@@ -18,8 +21,8 @@ declare module "next-auth" {
 
 declare module "next-auth/jwt" {
   interface JWT {
-    role: UserRole;
-    id: string;
+    role?: UserRole;
+    id?: string;
     department?: string;
     photoUrl?: string;
   }

@@ -113,3 +113,17 @@ export async function runWrite<T = Record<string, unknown>>(
     await session.close();
   }
 }
+
+/**
+ * Verify live connection to the Neo4j instance.
+ */
+export async function verifyConnectivity(): Promise<boolean> {
+  const driver = getDriver();
+  if (!driver) return false;
+  try {
+    const serverInfo = await driver.getServerInfo();
+    return !!serverInfo;
+  } catch {
+    return false;
+  }
+}

@@ -9,7 +9,7 @@ export interface GraphNode {
   className?: string;
 }
 
-export interface GraphNodeData {
+export interface GraphNodeData extends Record<string, unknown> {
   employeeId: string;
   name: string;
   role: string;

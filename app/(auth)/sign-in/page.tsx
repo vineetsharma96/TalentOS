@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { Suspense, useState, useTransition } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { Eye, EyeOff, Loader2, AlertCircle } from "lucide-react";
 
-export default function SignInPage() {
+function SignInContent() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") ?? "/dashboard";
 
@@ -98,39 +98,60 @@ export default function SignInPage() {
           }}
         >
           <h2
-            className="text-sm font-bold text-white mb-6 uppercase tracking-widest"
+            className="text-lg font-bold text-white mb-6"
             style={{ fontFamily: "var(--font-nbarchitekt, sans-serif)" }}
           >
             Sign In
           </h2>
 
-          <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Error message */}
+            <AnimatePresence>
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="p-3 rounded flex items-center gap-2 text-xs"
+                  style={{
+                    background: "rgba(239, 68, 68, 0.1)",
+                    border: "1px solid rgba(239, 68, 68, 0.3)",
+                    color: "#fca5a5",
+                    fontFamily: "var(--font-nbarchitekt, sans-serif)",
+                    borderRadius: "5px",
+                  }}
+                  role="alert"
+                >
+                  <AlertCircle size={14} className="shrink-0" />
+                  <span>{error}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {/* Email */}
             <div>
               <label
                 htmlFor="email"
-                className="block text-[10px] uppercase tracking-widest mb-2"
-                style={{ color: "#999999", fontFamily: "var(--font-nbarchitekt, sans-serif)" }}
+                className="block text-[10px] uppercase tracking-widest mb-1.5"
+                style={{ color: "#808080", fontFamily: "var(--font-nbarchitekt, sans-serif)" }}
               >
                 Email
               </label>
               <input
                 id="email"
                 type="email"
-                autoComplete="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                disabled={isPending}
-                className="w-full h-10 px-3 rounded text-sm text-white placeholder:text-white/20 focus:outline-none focus-visible:ring-1 focus-visible:ring-white/30 disabled:opacity-50 transition-all"
+                autoComplete="email"
+                className="w-full px-3 py-2 text-sm text-white rounded focus:outline-none transition-colors"
                 style={{
-                  background: "rgba(255,255,255,0.05)",
-                  border: "1px solid rgba(255,255,255,0.12)",
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid #4d4d4d",
                   borderRadius: "5px",
                   fontFamily: "var(--font-nbarchitekt, sans-serif)",
                 }}
-                placeholder="you@company.com"
-                aria-describedby={error ? "sign-in-error" : undefined}
+                placeholder="name@company.com"
               />
             </div>
 
@@ -138,8 +159,8 @@ export default function SignInPage() {
             <div>
               <label
                 htmlFor="password"
-                className="block text-[10px] uppercase tracking-widest mb-2"
-                style={{ color: "#999999", fontFamily: "var(--font-nbarchitekt, sans-serif)" }}
+                className="block text-[10px] uppercase tracking-widest mb-1.5"
+                style={{ color: "#808080", fontFamily: "var(--font-nbarchitekt, sans-serif)" }}
               >
                 Password
               </label>
@@ -147,25 +168,22 @@ export default function SignInPage() {
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}
-                  autoComplete="current-password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  disabled={isPending}
-                  className="w-full h-10 px-3 pr-10 rounded text-sm text-white placeholder:text-white/20 focus:outline-none focus-visible:ring-1 focus-visible:ring-white/30 disabled:opacity-50 transition-all"
+                  autoComplete="current-password"
+                  className="w-full px-3 py-2 pr-9 text-sm text-white rounded focus:outline-none transition-colors"
                   style={{
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.12)",
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid #4d4d4d",
                     borderRadius: "5px",
                     fontFamily: "var(--font-nbarchitekt, sans-serif)",
                   }}
-                  placeholder="••••••••"
-                  aria-describedby={error ? "sign-in-error" : undefined}
                 />
                 <button
                   type="button"
-                  onClick={() => setShowPassword((s) => !s)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors focus-visible:outline focus-visible:outline-1 focus-visible:outline-white/30 rounded"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-[#808080] hover:text-white transition-colors"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <EyeOff size={14} /> : <Eye size={14} />}
@@ -173,46 +191,16 @@ export default function SignInPage() {
               </div>
             </div>
 
-            {/* Error message */}
-            <AnimatePresence>
-              {error && (
-                <motion.div
-                  id="sign-in-error"
-                  role="alert"
-                  aria-live="assertive"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  className="flex items-center gap-2 px-3 py-2 rounded"
-                  style={{
-                    background: "rgba(255, 80, 80, 0.08)",
-                    border: "1px solid rgba(255, 80, 80, 0.2)",
-                    borderRadius: "5px",
-                  }}
-                >
-                  <AlertCircle size={12} className="text-red-400 shrink-0" />
-                  <p
-                    className="text-xs text-red-300"
-                    style={{ fontFamily: "var(--font-nbarchitekt, sans-serif)" }}
-                  >
-                    {error}
-                  </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
             {/* Submit */}
             <button
               type="submit"
-              disabled={isPending || !email || !password}
-              className="w-full h-10 rounded-full font-bold text-sm transition-all disabled:opacity-40 disabled:cursor-not-allowed focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/30"
+              disabled={isPending}
+              className="w-full py-2.5 text-sm font-bold text-white rounded transition-opacity disabled:opacity-50 mt-2"
               style={{
                 background: "#343755",
-                color: "#ffffff",
+                border: "1px solid rgba(255,255,255,0.15)",
+                borderRadius: "5px",
                 fontFamily: "var(--font-nbarchitekt, sans-serif)",
-                fontSize: "14px",
-                borderRadius: "500px",
-                marginTop: "8px",
               }}
             >
               {isPending ? (
@@ -265,5 +253,13 @@ export default function SignInPage() {
         </div>
       </motion.div>
     </div>
+  );
+}
+
+export default function SignInPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#000000]" />}>
+      <SignInContent />
+    </Suspense>
   );
 }

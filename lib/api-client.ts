@@ -1,5 +1,5 @@
-import { normalizeApiResponse, type ApiError } from "./error-normalizer";
-import type { ErrorCode } from "@/types/errors";
+import { normalizeApiResponse } from "./error-normalizer";
+import { type ApiError, isApiError } from "@/types/errors";
 
 interface FetchOptions extends RequestInit {
   /** Timeout in milliseconds. Default: 30000 */
@@ -49,35 +49,26 @@ export async function apiFetch<T>(
     }
 
     return response.json() as Promise<T>;
-  } catch (error) {
+  } catch (err: unknown) {
     clearTimeout(timeoutId);
 
     // Already normalized
-    if (isApiError(error)) throw error;
+    if (isApiError(err)) throw err;
 
     // Abort = timeout
-    if (error instanceof Error && error.name === "AbortError") {
+    if (err instanceof Error && err.name === "AbortError") {
       const timeoutError = normalizeApiResponse(408, null);
       throw { ...timeoutError, requestId };
     }
 
     // Network / offline
-    if (error instanceof TypeError) {
+    if (err instanceof TypeError) {
       const offlineError = normalizeApiResponse(0, null);
       throw { ...offlineError, requestId };
     }
 
-    throw error;
+    throw err;
   }
-}
-
-function isApiError(value: unknown): value is ApiError {
-  return (
-    typeof value === "object" &&
-    value !== null &&
-    "code" in value &&
-    "httpStatus" in value
-  );
 }
 
 // ─── Convenience methods ──────────────────────────────────────────────────────

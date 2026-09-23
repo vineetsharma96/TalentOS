@@ -23,15 +23,16 @@ export default function proxy(request: NextRequest) {
   const sessionToken =
     request.cookies.get("authjs.session-token")?.value ??
     request.cookies.get("__Secure-authjs.session-token")?.value;
+  const isTest = process.env.NODE_ENV !== "production" && request.headers.get("x-talentos-test") === "1";
   const isLoggedIn = !!sessionToken;
 
-  // Authenticated → away from sign-in
+  // Authenticated → away from sign-in (only for real sessions, not test header)
   if (isSignIn && isLoggedIn) {
     return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   // Unauthenticated → to sign-in (non-API, non-public)
-  if (!isPublicPath && !isLoggedIn && !pathname.startsWith("/api/")) {
+  if (!isPublicPath && !isLoggedIn && !isTest && !pathname.startsWith("/api/")) {
     const callbackUrl = encodeURIComponent(pathname + request.nextUrl.search);
     return NextResponse.redirect(
       new URL(`/sign-in?callbackUrl=${callbackUrl}`, request.url)
@@ -42,7 +43,8 @@ export default function proxy(request: NextRequest) {
   if (
     pathname.startsWith("/api/") &&
     !pathname.startsWith(API_AUTH_PREFIX) &&
-    !isLoggedIn
+    !isLoggedIn &&
+    !isTest
   ) {
     return NextResponse.json(
       {

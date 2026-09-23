@@ -140,8 +140,8 @@ export function ConnectionPanel({ selectedId, graphData, onClose }: ConnectionPa
 
           {/* Stats row */}
           <div
-            className="grid grid-cols-3 divide-x"
-            style={{ borderBottom: "1px solid #4d4d4d", divideColor: "#4d4d4d" }}
+            className="grid grid-cols-3 divide-x divide-[#4d4d4d]"
+            style={{ borderBottom: "1px solid #4d4d4d" }}
           >
             {[
               { icon: Users, label: "Connections", value: uniqueConnections.length },

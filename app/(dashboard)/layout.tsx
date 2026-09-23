@@ -1,6 +1,7 @@
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { Sidebar } from "@/components/layout/Sidebar";
+import { TopNav } from "@/components/layout/TopNav";
 
 export default async function DashboardLayout({
   children,
@@ -33,6 +34,14 @@ export default async function DashboardLayout({
         >
           Skip to main content
         </a>
+
+        {/* TopNav Header */}
+        <TopNav
+          userName={session.user.name ?? "Vikram Admin"}
+          userEmail={session.user.email ?? "admin@talentos.dev"}
+          userRole={session.user.role}
+          userPhotoUrl={session.user.photoUrl}
+        />
 
         <div className="flex-1 relative">{children}</div>
       </main>

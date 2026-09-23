@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 
 async function getWorkforceGraph() {
   const driver = getDriver();
+  if (!driver) throw new Error("Neo4j driver is not configured");
   const session = driver.session({ database: process.env.NEO4J_DATABASE ?? "neo4j" });
 
   try {

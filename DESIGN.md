@@ -1,214 +1,280 @@
-# Active Theory — Style Reference
-> cosmic void with a single luminous portal — deep-space command deck where chrome whispers and the rendered world shouts
+# Resend — Style Reference
+> black velvet with violet neon
 
 **Theme:** dark
 
 Source measurements are normalized; roles and recommendations are interpreted. Font summary lists are independent, not paired by position. HTML examples are reconstructions, not source components.
 
-Active Theory operates as a cosmic void stage where the immersive experience is the design and the UI chrome barely exists. The canvas is near-total black (#000000) with UI elements floating as whispered ghost containers — translucent surfaces, hairline borders, and pill-shaped controls that recede into the dark. Typography splits between an architectural geometric sans (nbarchitekt) for navigation and CTAs, and a deliberate editorial serif (Times) for body, creating an unexpected contrast that signals craft over convention. Color is rationed to a single muted violet accent (#343755) and pure white text — the page itself stays monochromatic so the rendered WebGL world carries all chromatic weight. Every UI decision prioritizes invisible-feeling chrome so the 3D scene reads as untethered floating in deep space.
+Resend lives in a near-total darkness — pure black canvas, hairline graphite borders, and white-on-black typography that feels like reading text printed on matte glass. The hero is anti-decorative: a single large serif headline at 96px Domaine next to a 3D black cube, with no gradient wash and no marketing illustration. The brand mark is a tight violet (#9281f7) that appears in email-address strings, status icons, and code samples — never on buttons. A monospaced font (Commit Mono) carries the developer identity through every code block, badge, and inline label, making the page read like a terminal wrapped in a luxury interface. Components are sharp-cornered or gently rounded (6px / 16px), low-elevation, and rely on 1px borders rather than shadows to separate layers. Motion is restrained but expressive: fade-and-slide hero text, subtle WebGL rotation on the hero cube, and short 150ms ease-out transitions on hover.
 
 ## Tokens — Colors
 
 | Name | Value | Token | Role |
 |------|-------|-------|------|
-| Void Black | `#000000` | `--color-void-black` | Page canvas, immersive background, card surfaces when stacked on dark — the absence of surface, not a color |
-| Ghost White | `#ffffff` | `--color-ghost-white` | Primary text, icon strokes, high-contrast labels — used at full opacity against pure black |
-| Ash Border | `#4d4d4d` | `--color-ash-border` | Card borders, divider hairlines — barely-there separator that defines edges without adding visual weight |
-| Smoke | `#808080` | `--color-smoke` | Muted borders on ghost buttons, secondary chrome — recedes behind active controls |
-| Fog | `#999999` | `--color-fog` | Medium-contrast borders, control outlines, and structural separators. Do not promote it to the primary CTA color |
-| Pale Mist | `#c6c6c6` | `--color-pale-mist` | Tertiary text, link default state, low-priority metadata — sits between white and gray for gentle hierarchy |
-| Dusk Violet | `#343755` | `--color-dusk-violet` | Primary action fill — filled pill buttons, the only chromatic accent in the system; muted indigo reads as electric against void black without competing with the rendered scene |
+| Void Black | `#000000` | `--color-void-black` | Page background, card surfaces, overlay scrims — the entire canvas |
+| Graphite Hairline | `#292d30` | `--color-graphite-hairline` | 1px borders on cards, inputs, buttons, code blocks, dividers — defines every layer separation |
+| White | `#ffffff` | `--color-white` | Primary headings, hero text, button labels, icon fills on dark surfaces |
+| Bone White | `#f0f0f0` | `--color-bone-white` | Body text, secondary headings, stroke outlines on icons — the primary reading color |
+| Ash Gray | `#a1a4a5` | `--color-ash-gray` | Muted body text, badge labels, icon strokes — third-tier text and metadata |
+| Smoke Gray | `#abafb4` | `--color-smoke-gray` | Link color, inactive button text, supporting captions — fourth-tier text |
+| Iron | `#6e727a` | `--color-iron` | Subtle decorative strokes, disabled states, low-emphasis borders |
+| Charcoal | `#464a4d` | `--color-charcoal` | Inline code text, muted labels — text that should disappear into the surface |
+| Iris Violet | `linear-gradient(to right bottom in oklab, rgb(146, 129, 247) 0%, rgb(154, 84, 220) 100%)` | `--color-iris-violet` | Violet text accent for links, tags, and emphasized short phrases; Diagonal violet-to-magenta gradient on icon containers and brand badges |
+| Iris Violet Glow | `#baa7ff` | `--color-iris-violet-glow` | Violet text accent for links, tags, and emphasized short phrases |
+| Signal Blue | `#3b9eff` | `--color-signal-blue` | Blue action color for filled buttons, selected navigation states, and focused conversion moments. |
+| Sky Blue | `#70b8ff` | `--color-sky-blue` | Blue text accent for links, tags, and emphasized short phrases |
+| Pulse Green | `#3ad389` | `--color-pulse-green` | Green text accent for links, tags, and emphasized short phrases. Use as a supporting accent, not as a status color |
+| Alarm Red | `#ff9592` | `--color-alarm-red` | Red text accent for links, tags, and emphasized short phrases. Use as a supporting accent, not as a status color |
+| Crimson | `#ff6465` | `--color-crimson` | Red wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Use as a supporting accent, not as a status color |
+| Amber | `#ffca16` | `--color-amber` | Yellow text accent for links, tags, and emphasized short phrases. Use as a supporting accent, not as a status color |
+| Amber Glow | `#ffd60a` | `--color-amber-glow` | Yellow wash for highlight backgrounds, decorative bands, and soft emphasis behind content. Use as a supporting accent, not as a status color |
+| Surface Gradient | `linear-gradient(rgb(27, 27, 27), rgb(3, 3, 3))` | `--color-surface-gradient` | Subtle card-to-canvas surface lift — used in edge fades and elevated panels |
 
 ## Tokens — Typography
 
-### nbarchitekt — Navigation, button labels, micro-labels, and link text — the architectural geometric sans carries all UI chrome. Weight 700 (14px) for button labels gives them physical presence; weight 400 (10-12px) for nav and metadata keeps controls whisper-thin. nbarchitekt's geometric DNA makes it feel engineered rather than editorial. · `--font-nbarchitekt`
-- **Substitute:** Space Grotesk, Inter, or any clean geometric sans with similar x-height proportions
-- **Weights:** 400, 700
-- **Sizes:** 10px, 12px, 14px
-- **Line height:** 1.20, 1.50, 3.00
-- **Letter spacing:** normal
-- **Role:** Navigation, button labels, micro-labels, and link text — the architectural geometric sans carries all UI chrome. Weight 700 (14px) for button labels gives them physical presence; weight 400 (10-12px) for nav and metadata keeps controls whisper-thin. nbarchitekt's geometric DNA makes it feel engineered rather than editorial.
+### Inter — Body copy, UI labels, navigation, buttons, links. The workhorse — appears 1280 times across every non-code surface. · `--font-inter`
+- **Substitute:** Inter (Google Fonts), Söhne, system-ui
+- **Weights:** 400, 500, 600
+- **Sizes:** 12px, 14px, 16px, 18px, 24px
+- **Line height:** 1.00, 1.33, 1.43, 1.50, 1.60
+- **Role:** Body copy, UI labels, navigation, buttons, links. The workhorse — appears 1280 times across every non-code surface.
 
-### Times — Body copy, card descriptions, inline links — the serif choice is deliberate editorial counterpoint against the geometric UI sans. Times (system) signals that body content should read as written prose, not UI labels, separating voice from chrome. Line height jumps to 1.88 for longer passages. · `--font-times`
-- **Substitute:** Times New Roman, Georgia, or any editorial serif — keeping it system-default reinforces the anti-decoration stance
+### Domaine — Hero display type — weight 400 at 96px with -0.01em tracking creates an editorial, almost-printed feel. Only used twice on the entire page for the largest hero statement. · `--font-domaine`
+- **Substitute:** GT Sectra, Tiempos Headline, Playfair Display
 - **Weights:** 400
-- **Sizes:** 16px
-- **Line height:** 1.20, 1.88
-- **Role:** Body copy, card descriptions, inline links — the serif choice is deliberate editorial counterpoint against the geometric UI sans. Times (system) signals that body content should read as written prose, not UI labels, separating voice from chrome. Line height jumps to 1.88 for longer passages.
+- **Sizes:** 77px, 96px
+- **Line height:** 1.00
+- **Letter spacing:** -0.01em
+- **OpenType features:** `"ss01", "ss04", "ss11"`
+- **Role:** Hero display type — weight 400 at 96px with -0.01em tracking creates an editorial, almost-printed feel. Only used twice on the entire page for the largest hero statement.
 
-### Arial — Cookie consent micro-copy — system fallback for compliance text, intentionally utilitarian and non-brand · `--font-arial`
-- **Substitute:** Any system sans, Arial itself is fine here
+### aBC Favorit — Section headlines and sub-headlines. The 56px weight-400 with -0.05em tracking is the signature — extreme negative tracking on a geometric sans creates a compressed, confident display feel that contrasts the editorial Domaine hero. · `--font-abc-favorit`
+- **Substitute:** Inter Display, Söhne Breit, GT America
+- **Weights:** 400, 500
+- **Sizes:** 14px, 16px, 20px, 56px
+- **Line height:** 1.00, 1.20, 1.30, 1.50
+- **Letter spacing:** -0.05em at 56px, +0.025em at 14px
+- **OpenType features:** `"ss01", "ss04", "ss11"; "ss01", "ss03", "ss04"`
+- **Role:** Section headlines and sub-headlines. The 56px weight-400 with -0.05em tracking is the signature — extreme negative tracking on a geometric sans creates a compressed, confident display feel that contrasts the editorial Domaine hero.
+
+### Commit Mono — Code blocks, inline code, terminal-style badges, API labels. Monospaced presence is the developer's identity signal — appears 814 times, rivaling Inter. · `--font-commit-mono`
+- **Substitute:** JetBrains Mono, Berkeley Mono, IBM Plex Mono
 - **Weights:** 400
-- **Sizes:** 13px
-- **Line height:** 1.20
-- **Letter spacing:** normal
-- **Role:** Cookie consent micro-copy — system fallback for compliance text, intentionally utilitarian and non-brand
+- **Sizes:** 12px, 14px, 16px
+- **Line height:** 1.33, 1.43, 1.50
+- **Role:** Code blocks, inline code, terminal-style badges, API labels. Monospaced presence is the developer's identity signal — appears 814 times, rivaling Inter.
+
+### Helvetica — Helvetica — detected in extracted data but not described by AI · `--font-helvetica`
+- **Weights:** 400, 600, 700
+- **Sizes:** 14px
+- **Line height:** 1, 1.71
+- **Role:** Helvetica — detected in extracted data but not described by AI
+
+### -apple-system — -apple-system — detected in extracted data but not described by AI · `--font-apple-system`
+- **Weights:** 400
+- **Sizes:** 14px
+- **Line height:** 1.5, 1.55
+- **OpenType features:** `"liga" 0`
+- **Role:** -apple-system — detected in extracted data but not described by AI
 
 ### Type Scale
 
 | Role | Family | Weight | Size | Line Height | Letter Spacing | Token |
 |------|--------|--------|------|-------------|----------------|-------|
-| caption | — | — | 10px | 1.5 | — | `--text-caption` |
-| body-sm | — | — | 12px | 1.5 | — | `--text-body-sm` |
-| body | — | — | 14px | 1.5 | — | `--text-body` |
+| caption | — | — | 12px | 1.33 | 0px | `--text-caption` |
+| body-sm | — | — | 14px | 1.43 | 0px | `--text-body-sm` |
+| body | — | — | 16px | 1.5 | 0px | `--text-body` |
+| subheading | — | — | 20px | 1 | 0px | `--text-subheading` |
+| heading-sm | — | — | 24px | 1.5 | 0px | `--text-heading-sm` |
+| heading | — | — | 56px | 1.2 | -2.8px | `--text-heading` |
+| heading-lg | — | — | 77px | 1 | -0.77px | `--text-heading-lg` |
+| display | — | — | 96px | 1 | -0.96px | `--text-display` |
 
 ## Tokens — Spacing & Shapes
 
-**Density:** compact
+**Base unit:** 4px
+
+**Density:** comfortable
 
 ### Spacing Scale
 
 | Name | Value | Token |
 |------|-------|-------|
 | 4 | 4px | `--spacing-4` |
-| 6 | 6px | `--spacing-6` |
+| 8 | 8px | `--spacing-8` |
 | 12 | 12px | `--spacing-12` |
-| 13 | 13px | `--spacing-13` |
-| 14 | 14px | `--spacing-14` |
 | 16 | 16px | `--spacing-16` |
-| 18 | 18px | `--spacing-18` |
+| 20 | 20px | `--spacing-20` |
+| 24 | 24px | `--spacing-24` |
 | 28 | 28px | `--spacing-28` |
+| 32 | 32px | `--spacing-32` |
+| 40 | 40px | `--spacing-40` |
+| 48 | 48px | `--spacing-48` |
+| 64 | 64px | `--spacing-64` |
+| 80 | 80px | `--spacing-80` |
+| 96 | 96px | `--spacing-96` |
+| 104 | 104px | `--spacing-104` |
+| 144 | 144px | `--spacing-144` |
 
 ### Border Radius
 
 | Element | Value |
 |---------|-------|
-| tags | 500px |
-| cards | 12px |
-| inputs | 5px |
-| buttons-pill | 500px |
-| buttons-ghost | 5px |
+| cards | 16px |
+| badges | 6px |
+| inputs | 6px |
+| buttons | 6px |
+| large-panels | 24px |
+
+### Shadows
+
+| Name | Value | Token |
+|------|-------|-------|
+| subtle | `rgba(176, 199, 217, 0.145) 0px 0px 0px 1px` | `--shadow-subtle` |
+| subtle-2 | `rgb(0, 0, 0) 0px 0px 0px 8px` | `--shadow-subtle-2` |
+| subtle-3 | `rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0p...` | `--shadow-subtle-3` |
 
 ### Layout
 
-- **Section gap:** 48px
-- **Card padding:** 28px
-- **Element gap:** 6px
+- **Page max-width:** 1200px
+- **Section gap:** 96px
+- **Card padding:** 32px
+- **Element gap:** 16px
 
 ## Components
 
-### Ghost Navigation Button
-**Role:** Top-right nav chrome (Work, Contact)
+### Primary Button (Ghost on Black)
+**Role:** Default CTA — 'Get started', 'Log in'
 
-Transparent background with 2px hairline border at rgba(255,255,255,0.6). 5px corner radius. 1px vertical / 6px horizontal padding — ultra-compact. Uppercase nbarchitekt 10-12px weight 400, white text. Sits flush right in the top-right corner, almost dissolving into the dark canvas.
+Transparent background, 1px border in #292d30, white text (#ffffff), 6px radius, 12px 16px padding. Hover increases border opacity to white. This is the signature button — never filled, never colorful.
 
-### Pill Primary Button (Dusk Violet)
-**Role:** Filled chromatic CTA on dark
+### Nav Link Button
+**Role:** Top navigation items — 'Features', 'Company', 'Resources'
 
-Dusk Violet (#343755) solid fill at full opacity. 500px border radius — fully pill-shaped. 4px vertical / 18px horizontal padding. nbarchitekt 14px weight 700 label in black. The only saturated color in the UI; used sparingly to mark singular actions.
+Transparent background, no border, text color #f0f0f0 at 14px Inter weight 400, 0px padding. Underline or color shift on hover to #ffffff.
 
-### Pill Primary Button (Void Black)
-**Role:** Neutral filled CTA
+### Text Link with Chevron
+**Role:** Inline CTAs — 'Documentation', 'Get started >'
 
-Black (#000000) at 0.333 opacity over dark backgrounds. 500px border radius. 4px / 18px padding. nbarchitekt 14px weight 700 black text. A tonal alternative to the violet pill — same shape, no chromatic commitment.
+No background, no border, white or #f0f0f0 text at 16px Inter, trailing chevron icon in same color. Restrained, terminal-like.
 
-### Translucent Cookie Banner
-**Role:** Compliance overlay at page base
+### Hero Announcement Pill
+**Role:** 'Announcing Resend Forward >' badge above hero headline
 
-Dark translucent panel (rgba(0,0,0,0.5)) with 12px radius. 16px top / 28px horizontal / 32px bottom padding — generous bottom padding lifts the dismiss actions. No shadow; relies on backdrop-filter blur(4px) to separate from the 3D scene behind. Body copy in Times 16px lh=1.88, white text.
+Transparent fill, 1px border in #292d30, #f0f0f0 text at 14px Inter, 9999px (pill) radius, 6px 12px padding. Small chromatic accent chevron.
 
-### Ghost Card Container
-**Role:** Project tile, work card, info panel
+### Section Card
+**Role:** Content cards in feature sections and testimonial grid
 
-Pure transparent or near-black fill with 1px Ash Border (#4d4d4d) at 4d4d4d. 12px corner radius. 28px horizontal padding. No elevation shadow — boundaries are communicated by hairline border alone, preserving the floating-in-void feeling.
+Black background (#000000), 1px border in #292d30, 16px radius, 32px padding, no shadow. Cards rely on the border to separate from the black canvas.
 
-### Audio Toggle
-**Role:** Immersive scene control
+### Testimonial Card
+**Role:** Customer quote cards in 'Beyond expectations' section
 
-Minimal icon-only control, likely ghost-button variant with 5px radius and chevron glyph. Positioned to not interfere with the central 3D composition. No text label — iconographic only.
+Black background, 1px #292d30 border, 16px radius, 24px padding. Contains quoted text at 16px Inter, avatar (32px circle), name at 14px weight 500 in #f0f0f0, role/title in #a1a4a5.
 
-### Navigation Divider Dot
-**Role:** Separator between nav items in the floating top bar
+### Code Block / Terminal Window
+**Role:** Developer-facing code snippets and API examples
 
-A single small dot or hairline mark between Work and Contact. No fill, just spatial punctuation that avoids a hard line break while keeping the nav visually grouped.
+Black background, 1px #292d30 border, 16px radius, Commit Mono at 12-14px. Syntax highlighting uses #9281f7 for strings/keywords, #3b9eff for filenames, #3ad389 for success values, #ff9592 for errors. Optional traffic-light dots in top-left for terminal aesthetic.
 
-### Hairline Link
-**Role:** Inline links within body copy (e.g., Privacy Notice)
+### Logo Grid
+**Role:** Customer logos — Warner Bros, Max, Raycast, etc.
 
-Pale Mist (#c6c6c6) text, no underline by default. Times 16px weight 400. Renders at AA contrast against void black — legible but not aggressive, signaling the link is contextual rather than primary.
+Inline-display logos at their native colors on black canvas, centered in a 4-column grid with 60px row gap. No card wrappers, no labels — just the marks breathing against black.
 
-### Iconic Brand Emblem
-**Role:** Centerpiece 3D-rendered logo/portal in hero scene
+### Status Indicator Dot
+**Role:** Email event status — delivered, opened, clicked, bounced, complained
 
-Circular wireframe portal with internal geometric mark, rendered in WebGL. Cyan-to-magenta gradient glow rim against pure black. Particle field emanating outward in green/gold specks. Not a UI component per se, but functions as the primary brand mark — it IS the hero.
+2-3px diameter filled dot, no border, paired with label text in Commit Mono. Colors map to semantics: #3ad389 delivered, #70b8ff opened, #baa7ff clicked, #ff9592 bounced, #ffca16 complained.
+
+### Email Address Badge
+**Role:** 'from:' addresses in code samples and UI
+
+No background, Commit Mono at 12-14px, text color #9281f7 (Iris Violet). The violet-on-black makes email identifiers the most readable code element — a deliberate developer-UX choice.
+
+### Icon Container
+**Role:** Rounded-square containers for app icons in integrations grid
+
+32x32 or 48x48 rounded square (16px radius), subtle gradient fill (oklab violet→magenta), white or violet stroke icon inside. Creates the only chromatic surface on the page.
+
+### 3D Hero Cube
+**Role:** WebGL-rendered black geometric cube in hero
+
+Full-opacity black cube with subtle edge highlights in #292d30, rotating slowly. No glow, no color — a sculptural object that anchors the right side of the hero against the black canvas.
+
+### Footer Link Row
+**Role:** Minimal footer with two text links
+
+Two text links ('Privacy', 'Terms') at 14px Inter in #a1a4a5, separated by space, no decorative elements. Footer is intentionally minimal — no logo, no columns.
 
 ## Do's and Don'ts
 
 ### Do
-- Use #000000 as the only canvas color — never introduce gray page backgrounds; the void must stay absolute
-- Reach for Dusk Violet (#343755) only for singular dominant CTAs — the accent is rationed precisely because it competes with the 3D scene
-- Use 500px border radius for all pill controls (buttons, tags) — partial rounding reads as inconsistent against the fully-pill primary
-- Set body copy in Times at 16px line-height 1.88 — the serif + generous leading creates editorial breathing room against the dense 3D visuals
-- Use 1px borders in #4d4d4d to define cards — never rely on shadows; the void cannot cast them
-- Apply backdrop-filter: blur(4px) to any overlay panel — frosted glass is how depth is communicated in this system
-- Keep nbarchitekt at 10-12px for nav and 14px weight 700 for button labels — the type scale is deliberately micro so chrome stays invisible
+- Use pure #000000 as the page canvas — never off-black or tinted dark grays for the background.
+- Separate all UI layers with 1px borders in #292d30, not shadows. Cards, inputs, code blocks all rely on hairline borders against the black canvas.
+- Use Commit Mono for any code, email address, or developer-facing string. Keep Inter for prose and UI chrome.
+- Keep buttons ghost/outlined: transparent fill, 1px border, white text. Never use a filled colorful button as the primary CTA.
+- Use 6px radius for buttons, badges, inputs. Use 16px radius for cards and code windows. Never mix — the radius scale is two values.
+- Let Iris Violet (#9281f7) mark code strings and developer identifiers. It is the only brand color and should feel like syntax highlighting, not decoration.
+- Apply tight -0.05em letter-spacing at 56px display sizes and -0.01em at 96px hero sizes. The compressed tracking is what makes the headlines feel confident.
 
 ### Don't
-- Do not introduce new chromatic accents — the palette is black, white, grays, and one violet; any additional hue will fight the rendered scene
-- Do not use box-shadows on any element — elevation must come from translucency stacking and backdrop blur, never projected light
-- Do not use solid white or solid gray card backgrounds — all surfaces must be translucent (rgba at 0.1-0.5) so the canvas bleeds through
-- Do not set body text in nbarchitekt — Times serif is the deliberate editorial counterpoint; mixing UI sans for prose flattens the voice distinction
-- Do not use rounding values between 5px and 500px — buttons are either sharp ghost rectangles (5px) or full pills (500px); intermediate radii look accidental
-- Do not add gradients to UI chrome — the 3D scene carries all gradient richness; UI gradients would cheapen the stage
-- Do not use light theme components even on bright sections — the system is dark-first; light mode would break the immersive continuity
+- Don't add gradients, glows, or chromatic washes to the hero or section backgrounds. The canvas is flat black.
+- Don't use filled accent-color buttons (blue, violet, green) as primary actions. Buttons stay ghost or white-text-on-black.
+- Don't use multiple border radii on a single surface. Cards are 16px, buttons/badges/inputs are 6px — pick one per component.
+- Don't introduce colored card backgrounds. Cards sit on black with hairline borders; no #292d30 fills.
+- Don't use shadows for elevation. The design relies on 1px borders and subtle backdrop blurs, not drop shadows.
+- Don't pair Iris Violet with large type as a decorative heading color. It belongs to code and developer identifiers only.
+- Don't break the monochrome-with-one-violet discipline by adding multiple accent hues to UI chrome. The status colors (green, blue, red, amber) are reserved for data/status indicators.
 
 ## Surfaces
 
 | Level | Name | Value | Purpose |
 |-------|------|-------|---------|
-| 0 | Void Canvas | `#000000` | Immersive WebGL background, the base layer for all rendered scenes |
-| 1 | Translucent Overlay | `#00000080` | Cookie banner, modal scrims, tooltip panels — provides separation without solid blocks |
-| 2 | Dusk Violet Surface | `#343755` | Filled pill CTA, selected state surfaces — the only chromatic surface tier |
-| 3 | Frosted Glass | `#ffffff1a` | Ghost button fills — barely-visible white wash that confirms a button exists on hover/active |
+| 0 | Void | `#000000` | Primary page canvas, full-bleed black |
+| 1 | Graphite | `#292d30` | Hairline borders defining card and input surfaces against the void |
+| 2 | Surface Lift | `#0b0e14` | Elevated panels and overlay scrims via subtle gradient |
+| 3 | Backdrop Blur | `#000000f2` | Modal and navigation overlays with blur(25px) |
 
 ## Elevation
 
-Elevation is achieved through stacking translucency layers over a black void rather than projecting shadows outward. Cards and overlays use rgba(0,0,0,0.5) fills with backdrop-filter: blur(4px) to create frosted-glass depth — the user perceives layering through what is obscured behind, not what is cast forward. This matches the immersive 3D context where shadows would feel physically wrong (there's no light source in space).
+Elevation is achieved through 1px hairline borders (#292d30) against a flat black canvas, never through drop shadows. The only shadow token in active use is a faint 1px ring (rgba(176, 199, 217, 0.145)) on icon containers, used sparingly to suggest a subtle light source rather than depth.
 
 ## Imagery
 
-This site is an immersive WebGL experience — the screenshot reveals a deep-space cosmic scene with a circular wireframe portal as the centerpiece, emanating a cyan-to-magenta rim glow with a faceted geometric mark at its core. Particle fields of green, gold, and cyan specks burst downward from the portal like a constellation collapsing into a fountain. A subtle green aurora wash bleeds from the top-left corner, adding atmospheric depth without dominating the composition. There is no photography or traditional illustration — the visual language is entirely rendered/real-time 3D. The UI chrome (top-right nav, cookie banner) is deliberately minimal so the 3D composition remains untouchable. Iconography is line-based and geometric when present, matching nbarchitekt's architectural character.
-
-## Layout
-
-Full-bleed immersive canvas with no max-width constraint — the page is a single viewport of rendered 3D space, not a scrolling document. The nav sits as a floating ghost bar pinned to the top-right, occupying minimal visual real estate. The hero composition is centered (the portal emblem sits at the horizontal and vertical center of the viewport) with the aurora wash creating asymmetric balance from the top-left. No grid is visible in the captured section — content density is near zero because the rendered scene carries the visual load. When more conventional sections appear (work listings, contact), they likely overlay the 3D canvas as translucent panels rather than replacing it.
+Imagery is almost entirely WebGL-rendered 3D objects (black cube in hero, rotating geometric forms) and inline product UI screenshots shown inside dark code windows. No photography, no illustrations, no lifestyle imagery. Logos in the trust bar are inline SVGs at native colors. Icons are 1px-1.5px stroke outlines in #f0f0f0 or #a1a4a5. The visual language is: black canvas, 3D object as hero anchor, dark code windows as product proof, white SVG logos as social proof. Nothing decorative — every visual element is either structural (cube) or demonstrative (code window, logo).
 
 ## Agent Prompt Guide
 
-**Quick Color Reference**
-- text: #ffffff
-- background: #000000
-- border: #4d4d4d
-- accent / link: #c6c6c6
-- primary action: #343755 (filled action)
+Quick Color Reference:
+- text/heading: #ffffff
+- text/body: #f0f0f0
+- text/muted: #a1a4a5
+- background/canvas: #000000
+- border/hairline: #292d30
+- accent/code: #9281f7
+- primary action: #3b9eff (filled action)
 
-**Example Component Prompts**
+3-5 Example Component Prompts:
 
-1. Create a ghost navigation button: transparent background, 2px solid rgba(255,255,255,0.6) border, 5px radius, 1px top/bottom and 6px left/right padding. Label in nbarchitekt 10px weight 400, uppercase, white. Position flush in the top-right corner over a pure black canvas.
+1. Create a section headline: 'Integrate tonight' at 56px aBCFavorit weight 400, color #ffffff, letter-spacing -2.8px, line-height 1.2. Below it, body copy at 18px Inter weight 400, color #a1a4a5. Section sits on a #000000 canvas with no border.
 
-2. Create a filled pill primary action button: #343755 background, 500px border radius, 4px top/bottom and 18px left/right padding. Label in nbarchitekt 14px weight 700, color black. Use this sparingly — only for singular dominant CTAs.
+2. Create a code terminal window: #000000 background, 1px border in #292d30, 16px radius, padding 24px. Content in Commit Mono at 14px. Email address strings colored #9281f7, keywords colored #f0f0f0, success values colored #3ad389. Optional 3 traffic-light dots (8px circles) in top-left.
 
-3. Create a translucent cookie banner: rgba(0,0,0,0.5) background with backdrop-filter blur(4px), 12px corner radius, 16px top padding, 28px horizontal padding, 32px bottom padding. No shadow. Body text in Times 16px line-height 1.88, white. Inline link text in #c6c6c6.
+3. Create a navigation bar: transparent background, Resend wordmark logo on left (white), nav items ('Features', 'Company', 'Resources') in Inter 14px weight 400, color #f0f0f0. On the right, a 'Get started' button — transparent fill, 1px border in #292d30, white text, 6px radius, 8px 16px padding. The bar sits on #000000 with no separator.
 
-4. Create a ghost card for a project tile: no background fill (transparent), 1px solid #4d4d4d border, 12px corner radius, 28px horizontal padding. Content sits inside without elevation shadow. Title in nbarchitekt 14px weight 700, white. Description in Times 16px line-height 1.88, white.
+4. Create a testimonial card: #000000 background, 1px border in #292d30, 16px radius, 32px padding. Quote text in Inter 16px weight 400, color #f0f0f0. Below: 32px circular avatar, name in Inter 14px weight 500 #f0f0f0, role/title in #a1a4a5. No shadow.
 
-5. Create a full-viewport immersive hero: pure #000000 canvas, centered 3D composition (abstract wireframe portal or geometric form), aurora gradient wash bleeding from one corner at very low opacity. UI chrome must be invisible at rest — nav appears as ghost button only on cursor approach.
-
-## Motion & Atmosphere
-
-Motion timing follows a deliberate cadence: micro-interactions at 0.2-0.4s with ease-out for UI feedback, while scene-level transitions run 0.8-9s with ease or linear for cinematic pacing. The dominant timing function is ease (61 occurrences) — not the modern cubic-bezier() trend, which signals a preference for organic, non-robotic motion curves. A named 'ticker' animation exists for sequential content reveals. Opacity is the primary transition property — UI elements fade in/out rather than sliding or scaling, reinforcing the ethereal floating-in-void metaphor. Any motion added to new pages should feel gravitational and unhurried, not snappy.
-
-## Why So Minimal
-
-Every color except one muted violet is achromatic. Every UI surface is translucent. Every border is a hairline. This is not laziness — it's because Active Theory's portfolio IS the rendered 3D/immersive experience. If the chrome competed with the WebGL scene, the work would be invisible. The design system is engineered to be a black velvet backdrop: the UI exists only to provide navigation and consent, and recedes the moment the user's attention shifts to the rendered world. When generating new pages for this brand, restraint is not a stylistic preference — it is the functional prerequisite for the immersive content to remain the hero.
+5. Create a status indicator row: inline pill with a 2px circle dot in #3ad389 followed by 'Delivered' label in Commit Mono 12px, color #a1a4a5. Dot indicates email event status. No background, no border, sits inline within a dark code window.
 
 ## Similar Brands
 
-- **Resn** — Both are immersive WebGL creative studios whose portfolio sites are full-bleed 3D scenes with ghost UI chrome and near-total dark canvases
-- **Active Theory itself** — Reference site — the design system described here
-- **Unseen Studios** — Same dark-void aesthetic with floating geometric compositions and hairline-border UI; similar whisper-quiet chrome approach
-- **Tool of North America** — Dark immersive agency sites where the 3D work is the hero and UI is reduced to ghost labels and pill buttons
-- **Resn** — Both are immersive WebGL creative studios whose portfolio sites are full-bleed 3D scenes with ghost UI chrome and near-total dark canvases
+- **Linear** — Same black-canvas, hairline-border aesthetic with restrained chromatic accents and sharp typography
+- **Vercel** — Near-identical pure-black backgrounds with white typography and minimal border-based elevation
+- **Plaid** — Dark-mode developer-tool identity with monospaced code emphasis and single-accent palette
+- **Railway** — Black canvas with terminal-style code windows as the primary product showcase
+- **Stripe (dark mode)** — Editorially confident display type on black with hairline borders and ghost buttons
 
 ## Quick Start
 
@@ -218,62 +284,113 @@ Every color except one muted violet is achromatic. Every UI surface is transluce
 :root {
   /* Colors */
   --color-void-black: #000000;
-  --color-ghost-white: #ffffff;
-  --color-ash-border: #4d4d4d;
-  --color-smoke: #808080;
-  --color-fog: #999999;
-  --color-pale-mist: #c6c6c6;
-  --color-dusk-violet: #343755;
+  --color-graphite-hairline: #292d30;
+  --color-white: #ffffff;
+  --color-bone-white: #f0f0f0;
+  --color-ash-gray: #a1a4a5;
+  --color-smoke-gray: #abafb4;
+  --color-iron: #6e727a;
+  --color-charcoal: #464a4d;
+  --color-iris-violet: #9281f7;
+  --gradient-iris-violet: linear-gradient(to right bottom in oklab, rgb(146, 129, 247) 0%, rgb(154, 84, 220) 100%);
+  --color-iris-violet-glow: #baa7ff;
+  --color-signal-blue: #3b9eff;
+  --color-sky-blue: #70b8ff;
+  --color-pulse-green: #3ad389;
+  --color-alarm-red: #ff9592;
+  --color-crimson: #ff6465;
+  --color-amber: #ffca16;
+  --color-amber-glow: #ffd60a;
+  --color-surface-gradient: #0b0e14;
+  --gradient-surface-gradient: linear-gradient(rgb(27, 27, 27), rgb(3, 3, 3));
 
   /* Typography — Font Families */
-  --font-nbarchitekt: 'nbarchitekt', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-times: 'Times', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-domaine: 'Domaine', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-abc-favorit: 'aBC Favorit', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-commit-mono: 'Commit Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-helvetica: 'Helvetica', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-apple-system: '-apple-system', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Typography — Scale */
-  --text-caption: 10px;
-  --leading-caption: 1.5;
-  --text-body-sm: 12px;
-  --leading-body-sm: 1.5;
-  --text-body: 14px;
+  --text-caption: 12px;
+  --leading-caption: 1.33;
+  --tracking-caption: 0px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: 0px;
+  --text-body: 16px;
   --leading-body: 1.5;
+  --tracking-body: 0px;
+  --text-subheading: 20px;
+  --leading-subheading: 1;
+  --tracking-subheading: 0px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.5;
+  --tracking-heading-sm: 0px;
+  --text-heading: 56px;
+  --leading-heading: 1.2;
+  --tracking-heading: -2.8px;
+  --text-heading-lg: 77px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -0.77px;
+  --text-display: 96px;
+  --leading-display: 1;
+  --tracking-display: -0.96px;
 
   /* Typography — Weights */
   --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
   /* Spacing */
+  --spacing-unit: 4px;
   --spacing-4: 4px;
-  --spacing-6: 6px;
+  --spacing-8: 8px;
   --spacing-12: 12px;
-  --spacing-13: 13px;
-  --spacing-14: 14px;
   --spacing-16: 16px;
-  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
   --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-104: 104px;
+  --spacing-144: 144px;
 
   /* Layout */
-  --section-gap: 48px;
-  --card-padding: 28px;
-  --element-gap: 6px;
+  --page-max-width: 1200px;
+  --section-gap: 96px;
+  --card-padding: 32px;
+  --element-gap: 16px;
 
   /* Border Radius */
-  --radius-md: 5px;
-  --radius-xl: 12px;
-  --radius-full: 500px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
 
   /* Named Radii */
-  --radius-tags: 500px;
-  --radius-cards: 12px;
-  --radius-inputs: 5px;
-  --radius-buttons-pill: 500px;
-  --radius-buttons-ghost: 5px;
+  --radius-cards: 16px;
+  --radius-badges: 6px;
+  --radius-inputs: 6px;
+  --radius-buttons: 6px;
+  --radius-large-panels: 24px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(176, 199, 217, 0.145) 0px 0px 0px 1px;
+  --shadow-subtle-2: rgb(0, 0, 0) 0px 0px 0px 8px;
+  --shadow-subtle-3: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
 
   /* Surfaces */
-  --surface-void-canvas: #000000;
-  --surface-translucent-overlay: #00000080;
-  --surface-dusk-violet-surface: #343755;
-  --surface-frosted-glass: #ffffff1a;
+  --surface-void: #000000;
+  --surface-graphite: #292d30;
+  --surface-surface-lift: #0b0e14;
+  --surface-backdrop-blur: #000000f2;
 }
 ```
 
@@ -283,39 +400,84 @@ Every color except one muted violet is achromatic. Every UI surface is transluce
 @theme {
   /* Colors */
   --color-void-black: #000000;
-  --color-ghost-white: #ffffff;
-  --color-ash-border: #4d4d4d;
-  --color-smoke: #808080;
-  --color-fog: #999999;
-  --color-pale-mist: #c6c6c6;
-  --color-dusk-violet: #343755;
+  --color-graphite-hairline: #292d30;
+  --color-white: #ffffff;
+  --color-bone-white: #f0f0f0;
+  --color-ash-gray: #a1a4a5;
+  --color-smoke-gray: #abafb4;
+  --color-iron: #6e727a;
+  --color-charcoal: #464a4d;
+  --color-iris-violet: #9281f7;
+  --color-iris-violet-glow: #baa7ff;
+  --color-signal-blue: #3b9eff;
+  --color-sky-blue: #70b8ff;
+  --color-pulse-green: #3ad389;
+  --color-alarm-red: #ff9592;
+  --color-crimson: #ff6465;
+  --color-amber: #ffca16;
+  --color-amber-glow: #ffd60a;
+  --color-surface-gradient: #0b0e14;
 
   /* Typography */
-  --font-nbarchitekt: 'nbarchitekt', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-times: 'Times', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-arial: 'Arial', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-inter: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-domaine: 'Domaine', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-abc-favorit: 'aBC Favorit', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-commit-mono: 'Commit Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-helvetica: 'Helvetica', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-apple-system: '-apple-system', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Typography — Scale */
-  --text-caption: 10px;
-  --leading-caption: 1.5;
-  --text-body-sm: 12px;
-  --leading-body-sm: 1.5;
-  --text-body: 14px;
+  --text-caption: 12px;
+  --leading-caption: 1.33;
+  --tracking-caption: 0px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: 0px;
+  --text-body: 16px;
   --leading-body: 1.5;
+  --tracking-body: 0px;
+  --text-subheading: 20px;
+  --leading-subheading: 1;
+  --tracking-subheading: 0px;
+  --text-heading-sm: 24px;
+  --leading-heading-sm: 1.5;
+  --tracking-heading-sm: 0px;
+  --text-heading: 56px;
+  --leading-heading: 1.2;
+  --tracking-heading: -2.8px;
+  --text-heading-lg: 77px;
+  --leading-heading-lg: 1;
+  --tracking-heading-lg: -0.77px;
+  --text-display: 96px;
+  --leading-display: 1;
+  --tracking-display: -0.96px;
 
   /* Spacing */
   --spacing-4: 4px;
-  --spacing-6: 6px;
+  --spacing-8: 8px;
   --spacing-12: 12px;
-  --spacing-13: 13px;
-  --spacing-14: 14px;
   --spacing-16: 16px;
-  --spacing-18: 18px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
   --spacing-28: 28px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-104: 104px;
+  --spacing-144: 144px;
 
   /* Border Radius */
-  --radius-md: 5px;
-  --radius-xl: 12px;
-  --radius-full: 500px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(176, 199, 217, 0.145) 0px 0px 0px 1px;
+  --shadow-subtle-2: rgb(0, 0, 0) 0px 0px 0px 8px;
+  --shadow-subtle-3: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px;
 }
 ```
